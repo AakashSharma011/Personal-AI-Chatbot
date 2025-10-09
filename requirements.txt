@@ -1,4 +1,4 @@
-streamlit==1.37.1
+streamlit==1.36.0
 langgraph==0.0.33
 langchain-google-genai==0.1.2
 python-dotenv==1.0.1
