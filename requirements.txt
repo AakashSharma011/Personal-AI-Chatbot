@@ -1,5 +1,5 @@
 streamlit
-langgraph
+langgraph==0.0.33
 langchain_google_genai
 openai
 python-dotenv
