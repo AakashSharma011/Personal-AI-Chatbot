@@ -8,3 +8,4 @@ mdurl==0.1.2
 rich==13.7.1
 pygments==2.17.2
 langchain-google-genai
+langgraph
