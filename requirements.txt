@@ -3,3 +3,7 @@ langgraph==0.0.33
 langchain_google_genai==0.1.2
 openai
 python-dotenv
+markdown-it-py==4.0.0
+mdurl==0.1.2
+pygments==2.19.2
+rich==14.1.0
