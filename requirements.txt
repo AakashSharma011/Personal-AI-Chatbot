@@ -1,8 +1,7 @@
 streamlit==1.26.0
 langgraph==0.0.33
 langchain_google_genai==0.1.2
-openai
-python-dotenv
+python-dotenv==1.0.0
 markdown-it-py==4.0.0
 mdurl==0.1.2
 pygments==2.19.2
