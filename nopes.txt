@@ -1,0 +1,240 @@
+- - - - - - > EXP -1 (Linear Regression)
+
+
+from sklearn.datasets import fetch_california_housing
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import r2_score
+
+# Load data
+data = fetch_california_housing()
+X, y = data.data, data.target
+
+# Train-test split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Model
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+# Prediction
+y_pred = model.predict(X_test)
+
+# R2 Score
+print("R² Score:", r2_score(y_test, y_pred))
+
+
+
+- - - - - - -> EXP -2 (Logistic Regression)
+
+from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+
+# Load data
+data = load_breast_cancer()
+X, y = data.data, data.target
+
+# Train-test split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Model
+model = LogisticRegression(max_iter=2000)
+model.fit(X_train, y_train)
+
+# Prediction
+y_pred = model.predict(X_test)
+
+print("Accuracy:", accuracy_score(y_test, y_pred))
+
+
+
+- - - - - - - > EXP - 3 (KNN)
+
+
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score
+
+# Load data
+X, y = load_iris(return_X_y=True)
+
+# Scaling (very important for KNN)
+scaler = StandardScaler()
+X = scaler.fit_transform(X)
+
+# Split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Model
+model = KNeighborsClassifier(n_neighbors=5)
+model.fit(X_train, y_train)
+
+# Prediction
+y_pred = model.predict(X_test)
+
+print("Accuracy:", accuracy_score(y_test, y_pred))
+
+
+
+- - - - - - - - > EXP 4 (SVM)
+
+
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.svm import SVC
+from sklearn.metrics import accuracy_score
+
+# Load data
+X, y = load_iris(return_X_y=True)
+
+# Scaling
+scaler = StandardScaler()
+X = scaler.fit_transform(X)
+
+# Split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Model (RBF kernel)
+model = SVC(kernel='rbf')
+model.fit(X_train, y_train)
+
+# Prediction
+y_pred = model.predict(X_test)
+
+print("Accuracy:", accuracy_score(y_test, y_pred))
+
+
+
+- - - - - - - - - > EXP 5 (Bagging)
+
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
+
+# Data
+X, y = load_iris(return_X_y=True)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
+
+# Bagging via Random Forest
+model = RandomForestClassifier(n_estimators=50, random_state=0)
+model.fit(X_train, y_train)
+
+# Predict
+y_pred = model.predict(X_test)
+print("Accuracy:", accuracy_score(y_test, y_pred))
+
+
+- - - - - - - > EXP 6 (study and implement Naive Bayes )
+
+
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import GaussianNB
+from sklearn.metrics import accuracy_score
+
+# Load data
+X, y = load_iris(return_X_y=True)
+
+# Train-test split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Model
+model = GaussianNB()
+model.fit(X_train, y_train)
+
+# Prediction
+y_pred = model.predict(X_test)
+
+# Accuracy
+print("Accuracy:", accuracy_score(y_test, y_pred))
+
+
+- - - - - - - - >EXP 7 (Desicion Tree )
+
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score
+
+# Load data
+X, y = load_iris(return_X_y=True)
+
+# Train-test split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Model
+model = DecisionTreeClassifier(criterion='gini', max_depth=None)
+model.fit(X_train, y_train)
+
+# Prediction
+y_pred = model.predict(X_test)
+
+print("Accuracy:", accuracy_score(y_test, y_pred))
+
+- - - - - - - - - > EXP 8 (K mean Clustering)
+
+from sklearn.datasets import make_blobs
+from sklearn.cluster import KMeans
+import matplotlib.pyplot as plt
+
+# Dataset
+X, y = make_blobs(n_samples=300, centers=3, random_state=0)
+
+# KMeans Model
+kmeans = KMeans(n_clusters=3, random_state=0)
+labels = kmeans.fit_predict(X)
+
+# Plot clusters
+plt.scatter(X[:,0], X[:,1], c=labels)
+plt.scatter(kmeans.cluster_centers_[:,0], 
+            kmeans.cluster_centers_[:,1], 
+            s=200, marker='X')
+
+plt.title("K-Means Clustering")
+plt.show()
+
+
+- - - - - - - - >EXP 9 (Gaussian Mixture Model)
+
+
+from sklearn.datasets import make_blobs
+from sklearn.mixture import GaussianMixture
+import matplotlib.pyplot as plt
+
+# Dataset
+X, y = make_blobs(n_samples=300, centers=3, random_state=0)
+
+# GMM Model
+gmm = GaussianMixture(n_components=3, random_state=0)
+labels = gmm.fit_predict(X)
+
+# Plot
+plt.scatter(X[:,0], X[:,1], c=labels)
+plt.title("GMM Clustering using EM")
+plt.show()
+
+
+- - - - - - - - - - >EXP 10( DBSCAN)
+
+
+from sklearn.datasets import make_moons
+from sklearn.cluster import DBSCAN
+import matplotlib.pyplot as plt
+
+# Dataset
+X, y = make_moons(n_samples=300, noise=0.08, random_state=0)
+
+# Model
+db = DBSCAN(eps=0.25, min_samples=5)
+labels = db.fit_predict(X)
+
+# Plot
+plt.scatter(X[:,0], X[:,1], c=labels)
+plt.title("DBSCAN Clusters")
+plt.show()
